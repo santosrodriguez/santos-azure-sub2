@@ -24,7 +24,7 @@ provider "azurerm" {
   alias           = "santos-azure-sub1" # Do not modify the alias, as it will break individual resource blocks.
   subscription_id = "2aa7f81a-c2cc-41f6-ae8e-468be407d0de"
 }
-
+/*
 
 ##################################################
 # EXISTING (unmanaged) RESOURCES                 #
@@ -41,7 +41,7 @@ data "azurerm_virtual_network" "prd-eastus-paloew-vnet1" { # paloew-eastus vnet 
   resource_group_name = data.azurerm_resource_group.firewall_rg.name
 }
 
-
+*/
 
 
 ##################################################
