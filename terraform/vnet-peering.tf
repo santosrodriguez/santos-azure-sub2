@@ -30,15 +30,15 @@ provider "azurerm" {
 # EXISTING (unmanaged) RESOURCES                 #
 ##################################################
 
-data "azurerm_resource_group" "firewall_rg" { # Firewall Resource Group on CS-PNP-COMMONSERVICESINFRA subscription.
-  name     = "FIREWALL_RG"
-  provider = azurerm.cs-pnp-commonservicesinfra
+data "azurerm_resource_group" "infrastructure-rg" { # Firewall Resource Group on CS-PNP-COMMONSERVICESINFRA subscription.
+  name     = "infrastructure-rg"
+  provider = azurerm.santos-azure-sub1
 }
 
 data "azurerm_virtual_network" "prd-eastus-paloew-vnet1" { # paloew-eastus vnet information
   provider            = azurerm.cs-pnp-commonservicesinfra
-  name                = "prd-eastus-paloew-vnet1"
-  resource_group_name = data.azurerm_resource_group.firewall_rg.name
+  name                = "hub-vnet1"
+  resource_group_name = data.azurerm_resource_group.infrastructure-rg.name
 }
 
 */
