@@ -29,7 +29,7 @@ variable "santos-azure-sub2_infrastructure-rg_vnet1_address1" { default = ["10.3
 variable "santos-azure-sub2_infrastructure-rg_vnet2" { default = "spoke1-vnet1" }                #Name for VNET1 (e.g. environment-location-customer/app-vnet1 - dev-eastus-mdp-vnet1)
 variable "santos-azure-sub2_infrastructure-rg_vnet2_cidr1" { default = ["10.36.0.0/16"] }     #Enter the CIDR Range (e.g.["xxx.xxx.xxx.xxx/20"] )
 variable "santos-azure-sub2_infrastructure-rg_vnet2_subnet1" { default = "general_subnet" }   #DO NOT CHANGE
-variable "santos-azure-sub2_infrastructure-rg_vnet2_address1" { default = ["10.36.1.0/24"] }  #Enter the Subnet Range (e.g.["xxx.xxx.xxx.xxx/22"] )
+variable "santos-azure-sub2_infrastructure-rg_vnet2_subnet1_cidr" { default = ["10.36.1.0/24"] }  #Enter the Subnet Range (e.g.["xxx.xxx.xxx.xxx/22"] )
 
 ##################################################
 # RESOURCE GROUP and SHARED RESOURCES            #
@@ -260,7 +260,7 @@ resource "azurerm_subnet" "santos-azure-sub2_infrastructure-rg_vnet2_subnet1" {
   name                 = var.santos-azure-sub2_infrastructure-rg_vnet2_subnet1
   resource_group_name  = var.santos-azure-sub2_infrastructure-rg
   virtual_network_name = azurerm_virtual_network.santos-azure-sub2_infrastructure-rg_vnet2.name
-  address_prefixes     = var.santos-azure-sub2_infrastructure-rg_vnet2_address1
+  address_prefixes     = var.santos-azure-sub2_infrastructure-rg_vnet2_subnet1_cidr
   service_endpoints = [
     "Microsoft.Storage",
     "Microsoft.KeyVault"
