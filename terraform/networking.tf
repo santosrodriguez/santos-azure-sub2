@@ -366,6 +366,7 @@ resource "azurerm_network_watcher_flow_log" "santos-azure-sub2_networkwatcher-rg
   network_watcher_name      = azurerm_network_watcher.santos-azure-sub2_networkwatcher-rg_networkwatcher.name
   resource_group_name       = azurerm_resource_group.santos-azure-sub2-networkwatcher_rg.name
   name                      = azurerm_network_security_group.santos-azure-sub2_infrastructure-rg_nsg1.name
+  location                  = var.location
   network_security_group_id = azurerm_network_security_group.santos-azure-sub2_infrastructure-rg_nsg1.id
   storage_account_id        = azurerm_storage_account.stdiagseus_santos-azure-sub2.id
   enabled                   = true
