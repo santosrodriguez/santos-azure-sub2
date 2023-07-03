@@ -1,0 +1,50 @@
+/*
+##################################################
+# PROVIDER BLOCK DEFINITIONS                     #
+# Individual provider blocks for local and       #
+# CS-PNP-CommonServicesInfra subscriptions for   #
+# peering to PaloEW VNETs                        #
+##################################################
+
+provider "azurerm" {
+  features {
+    key_vault {
+      purge_soft_delete_on_destroy = true
+    }
+  }
+  alias           = "localsubscription" # Do not modify the alias, as it will break individual resource blocks.
+  subscription_id = var.subscription_id
+}
+
+provider "azurerm" {
+  features {
+    key_vault {
+      purge_soft_delete_on_destroy = true
+    }
+  }
+  alias           = "cs-pnp-commonservicesinfra" # Do not modify the alias, as it will break individual resource blocks.
+  subscription_id = var.commonservices_subscription_id
+}
+
+
+##################################################
+# EXISTING (unmanaged) RESOURCES                 #
+##################################################
+
+data "azurerm_resource_group" "firewall_rg" { # Firewall Resource Group on CS-PNP-COMMONSERVICESINFRA subscription.
+  name     = "FIREWALL_RG"
+  provider = azurerm.cs-pnp-commonservicesinfra
+}
+
+data "azurerm_virtual_network" "prd-eastus-paloew-vnet1" { # paloew-eastus vnet information
+  provider            = azurerm.cs-pnp-commonservicesinfra
+  name                = "prd-eastus-paloew-vnet1"
+  resource_group_name = data.azurerm_resource_group.firewall_rg.name
+}
+
+data "azurerm_virtual_network" "prd-westus-paloew-vnet1" { # paloew-westus vnet information
+  provider            = azurerm.cs-pnp-commonservicesinfra
+  name                = "prd-westus-paloew-vnet1"
+  resource_group_name = data.azurerm_resource_group.firewall_rg.name
+}
+*/
