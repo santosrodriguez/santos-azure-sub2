@@ -35,7 +35,7 @@ data "azurerm_resource_group" "infrastructure-rg" { # Firewall Resource Group on
   provider = azurerm.santos-azure-sub1
 }
 
-data "azurerm_virtual_network" "prd-eastus-paloew-vnet1" { # paloew-eastus vnet information
+data "azurerm_virtual_network" "hub-vnet1" { # paloew-eastus vnet information
   provider            = azurerm.cs-pnp-commonservicesinfra
   name                = "hub-vnet1"
   resource_group_name = data.azurerm_resource_group.infrastructure-rg.name
@@ -53,7 +53,7 @@ resource "azurerm_virtual_network_peering" "santos-azure-sub1_infrastructure-rg_
   name                         = azurerm_virtual_network.santos-azure-sub1_infrastructure-rg_vnet2.name
   resource_group_name          = var.santos-azure-sub1_infrastructure-rg
   virtual_network_name         = azurerm_virtual_network.santos-azure-sub2_infrastructure-rg_vnet3.name
-  remote_virtual_network_id    = azurerm_virtual_network.santos-azure-sub1_infrastructure-rg_vnet1.id
+  remote_virtual_network_id    = data.azurerm_virtual_network.hub-vnet1.id
   allow_virtual_network_access = true
   allow_forwarded_traffic      = true
   allow_gateway_transit        = false
