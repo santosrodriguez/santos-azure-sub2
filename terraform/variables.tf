@@ -9,20 +9,8 @@ variable "sub_Name" {
   default     = "santos-azure-sub2"
 }
 
-# Change this variable to match the target subscription.
-variable "subscription_id" {
-  type        = string
-  description = "Id of the LOCAL (target) subscription"
-  default     = "d4693006-ef9a-4c42-a3ec-a6e69a58f5ee"
-}
 
 
-#Azure AD tenant ID
-variable "tenant_id" {
-  type        = string
-  description = "Azure AD tenant ID"
-  default     = "603b3704-d0cf-4517-9067-6afd49a51d1b"
-}
 
 # Region where the resource will be deployed
 variable "location" {
@@ -37,3 +25,26 @@ variable "dns_entries_eastus" {
   description = "Set custom dns config. If no values specified, this defaults to Azure DNS"
   default     = ["10.115.10.5", "10.115.10.6"]
 }
+
+
+
+
+
+
+### The variables below are set in Terraform Cloud. Empty variables are required to be set here for the Terraform cloud variables to work
+
+# Change this variable to match the target subscription.
+variable "subscription_id" {
+  type        = string
+  description = "Id of the LOCAL (target) subscription"
+}
+
+
+#Azure AD tenant ID
+variable "tenant_id" {
+  type        = string
+  description = "Azure AD tenant ID"
+}
+variable "client_id" {}
+variable "client_secret" {}
+
