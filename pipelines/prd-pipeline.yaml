@@ -1,0 +1,30 @@
+trigger:
+  branches:
+    include:
+    - feature/*
+    - main
+  paths:
+    include:
+    - Terraform/prd
+
+resources:
+  repositories:
+  - repository: templates
+    name: dos-pipeline-templates
+    type: Git
+
+pool: 
+  name: default
+
+
+variables:
+  TERRAFORM_VERSION: "v1.3.7" #### This should match the version of Terraform your target workspace is mapped to.
+  SECRET_ID: 15298 #### Thycotic secret ID of you TFE API token as an Integer
+  ENV: "prd" ### This should not change
+
+stages:
+
+- template: terraform-apply-template.yaml@templates
+
+
+
